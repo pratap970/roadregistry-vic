@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# But track these files/folders
+!.gitignore
+!pom.xml
+!src/
+!src/main/
+!src/main/**
+!src/test/
+!src/test/**
