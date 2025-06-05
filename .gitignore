@@ -1,11 +1,9 @@
-# Ignore everything
+# Ignore everything by default
 *
 
-# But track these files/folders
+# But do NOT ignore these
 !.gitignore
 !pom.xml
 !src/
-!src/main/
-!src/main/**
-!src/test/
-!src/test/**
+!src/**/        # all subdirectories (main/, test/, etc.)
+!src/**/*.java  # all Java files inside src
