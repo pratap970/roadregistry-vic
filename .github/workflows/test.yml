@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Run Java Tests
 
 on:
   push:
@@ -7,20 +7,29 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-    - name: Set up JDK
+    - name: Set up Java
       uses: actions/setup-java@v3
       with:
-        java-version: '17'
         distribution: 'temurin'
+        java-version: '17'  # or use 11 if you're on Java 11
+
+    - name: Cache Maven packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
 
     - name: Build with Maven
-      run: mvn -B package
+      run: mvn -B package --file pom.xml
 
     - name: Run Tests
       run: mvn test
