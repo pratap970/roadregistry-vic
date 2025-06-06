@@ -7,3 +7,7 @@
 !src/
 !src/**/        # all subdirectories (main/, test/, etc.)
 !src/**/*.java  # all Java files inside src
+!.github/
+!.github/workflows/
+!.github/workflows/test.yml
+s
